@@ -24,8 +24,16 @@ public class Practice06Test {
 	}
 	
 	
+	/* Only adjust this method for remaining credit */
 	public boolean isPalindrome(String item) {
 		clearData();
+
+		String itemLower = item.toLowerCase();
+		item = itemLower; /* Change all to lowercase */
+		/* Get rid of punctuation */
+		item = item.replaceAll("\\s+","");
+		item = item.replaceAll("!","");
+
 		for (int i = 0; i < item.length(); i++) {
 			stack.push(item.substring(i, i+1));
 			queue.enqueue(item.substring(i, i+1));
@@ -34,12 +42,10 @@ public class Practice06Test {
 		while (! stack.empty() && ! queue.empty()) {
 			if (! stack.pop().equals(queue.dequeue())) {
 				return false;
+			} else {
+				return true;
 			}
 		}
-		
-		// At this point, the stack AND the queue should be empty. But check in case...
-		if (!stack.empty() || ! queue.empty())
-			return false;
 		
 		return true;
 	}
